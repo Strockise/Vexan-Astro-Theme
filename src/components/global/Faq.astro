@@ -1,0 +1,73 @@
+---
+import PrimaryButton from './PrimaryButton.astro';
+import SectionSubtitle from './SectionSubtitle.astro';
+import faq from "../../config/faq.json";
+
+interface Props {
+  /** "compact" = the reduced top spacing used on the blog page */
+  variant?: "base" | "compact";
+  items?: { question: string; answer: string }[];
+}
+
+const { variant = "base", items = faq.items } = Astro.props;
+---
+
+<section class="section-faq">
+  <div class:list={["faq-section-gap", variant === "compact" && "w-variant-7d015085-268a-4601-457e-85e731404d96"]}>
+    <div class="w-layout-blockcontainer container-main w-container">
+      <div class="faq-wrapper">
+        <div scroll="scroll interaction" class="faq-top-wrapper">
+          <div page-scroll-1="" class="section-subtitle-block is-width">
+            <SectionSubtitle text="FAQs" />
+          </div>
+          <div class="faq-header-content is-top-gap">
+            <div class="faq-header-block">
+              <h2 heading-style-2="">{faq.heading}</h2>
+            </div>
+          </div>
+          <div page-scroll-2="" class="faq-button-block">
+            <PrimaryButton href="/contact" label="Contact Now" />
+          </div>
+        </div>
+        <div class="faq-bottom-content">
+          <div class="faq-content-wrapper">
+            <div class="faq-summary-block">
+              <div page-scroll-2="" class="faq-summary-max-width">
+                <p class="faq-summary">{faq.summary}</p>
+              </div>
+            </div>
+            <div scroll-list="" class="faq-tab-content">
+              {
+                items.map((item, i) => (
+                  <div class:list={["faq-tab-link", i === items.length - 1 && "is-bottom-border"]}>
+                    <div class="faq-tab-content-block">
+                      <div class="faq-content-block">
+                        <div class="faq-content-top">
+                          <div class="faq-question-block">
+                            <div class="faq-question">{String(i + 1).padStart(2, "0")}. {item.question}</div>
+                          </div>
+                        </div>
+                        <div class="faq-content-wrap">
+                          <div class="faq-top-gap">
+                            <p class="faq-answer-text">{item.answer}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="faq-icon-block">
+                        <div class="faq-icon"></div>
+                        <div class="faq-icon is-01"></div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+            <div page-scroll-3="" class="faq-image-wrap">
+              <div class="faq-image-block"><img src="/images/Faq-Image.webp" loading="lazy" sizes="(max-width: 708px) 100vw, 708px" srcset="/images/Faq-Image-p-500.webp 500w, /images/Faq-Image.webp 708w" alt="faq-image" class="faq-image"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

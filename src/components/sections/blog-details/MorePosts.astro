@@ -1,0 +1,66 @@
+---
+import { getBlogs } from '../../../lib/cms';
+import BlogCard from '../../cards/BlogCard.astro';
+import PrimaryButton from '../../global/PrimaryButton.astro';
+import SectionSubtitle from '../../global/SectionSubtitle.astro';
+
+const posts = await getBlogs();
+---
+
+<section class="section-blog">
+  <div class="blog-gap is-bg-color">
+    <div class="w-layout-blockcontainer container-main w-container">
+      <div class="blog-wrapper">
+        <div class="blog-top-wrapper">
+          <div class="blog-header-block">
+            <div page-scroll-1="" class="section-subtitle-block">
+              <SectionSubtitle text="Blog" />
+            </div>
+            <div class="section-header-block max-width-54-rem">
+              <h2 heading-style-2="" class="heading-style-h1">Similar Article </h2>
+            </div>
+          </div>
+          <div page-scroll-2="" class="blog-button-wrap">
+            <PrimaryButton href="/blog" label="View All Articles" />
+          </div>
+        </div>
+        <div class="blog-hero-content-wrapper">
+          <div class="blog-cms-list-wrapper w-dyn-list">
+            {
+              posts.slice(0, 1).length > 0 ? (
+                <div role="list" class="blog-cms-list w-dyn-items">
+                  {posts.slice(0, 1).map((post) => (
+                    <div page-load-3="" role="listitem" class="blog-cms-item w-dyn-item">
+                      <BlogCard post={post} variant="large" />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div class="w-dyn-empty">
+                  <div>No items found.</div>
+                </div>
+              )
+            }
+          </div>
+          <div class="collection-list-wrapper w-dyn-list">
+            {
+              posts.slice(1, 2).length > 0 ? (
+                <div role="list" class="blog-cms-list w-dyn-items">
+                  {posts.slice(1, 2).map((post) => (
+                    <div page-load-3="" role="listitem" class="blog-cms-item w-dyn-item">
+                      <BlogCard post={post} variant="small" />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div class="w-dyn-empty">
+                  <div>No items found.</div>
+                </div>
+              )
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

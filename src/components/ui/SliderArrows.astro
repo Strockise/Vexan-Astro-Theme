@@ -1,0 +1,12 @@
+---
+/** Arrows + dot navigation of the Webflow slider (`.w-slider`). Behaviour: src/scripts/slider.ts */
+const arrow = `<svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M0.00187614 10.7499L-0.000519583 8.05472L16.2309 8.06915L10.0003 1.83855L11.8793 -0.000138114L21.2805 9.40111L11.8859 18.7957L10.0238 16.9336L16.2132 10.7442L0.00187614 10.7499Z" fill="currentColor"></path></svg>`;
+---
+
+<div class="slider-arrow is-left w-slider-arrow-left">
+  <div class="slider-arrow-icon is-rotate w-embed" set:html={arrow} />
+</div>
+<div class="slider-arrow is-right w-slider-arrow-right">
+  <div class="slider-arrow-icon w-embed" set:html={arrow} />
+</div>
+<div class="slide-nav w-slider-nav w-round w-num"></div>

@@ -1,0 +1,33 @@
+---
+import config from '../../config/config.json';
+import menu from '../../config/menu.json';
+import { isCurrent } from '../../lib/utils';
+import NavMenu from './NavMenu.astro';
+
+const path = Astro.url.pathname;
+const homeCurrent = isCurrent(path, '/');
+---
+
+<header class="header">
+  <div data-animation="over-right" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav" data-nav>
+    <div class="nav-inner-block">
+      <div class="container-main w-container">
+        <div class="nav-content-wrap">
+          <a href="/" aria-current={homeCurrent ? 'page' : undefined} aria-label="home" class:list={['brand-logo-block w-nav-brand', homeCurrent && 'w--current']}>
+            <img loading="lazy" src={config.site.logo} alt="brand-logo" class="brand-logo" />
+          </a>
+          <div class="menu-button-block">
+            <div class="menu-button w-nav-button">
+              <div class="menu-button-icon">
+                <div class="menu-button-line is-01"></div>
+                <div class="menu-button-line is-02"></div>
+                <div class="menu-button-line is-03"></div>
+              </div>
+            </div>
+          </div>
+          <NavMenu items={menu.main} />
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,20 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogDetailsHero from '../../components/sections/blog-details/BlogDetailsHero.astro';
+import MorePosts from '../../components/sections/blog-details/MorePosts.astro';
+import { getBlogs } from '../../lib/cms';
+import type { Blog } from '../../lib/types';
+
+export const getStaticPaths = (async () => {
+  const posts = await getBlogs();
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props as { post: Blog };
+---
+
+<BaseLayout title={post.title} appendSuffix={false} description={post.summary} image={post.mainImage} type="article">
+  <BlogDetailsHero post={post} />
+  <MorePosts />
+</BaseLayout>

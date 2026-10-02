@@ -1,0 +1,29 @@
+{
+  "main": [
+    { "label": "Home", "href": "/" },
+    { "label": "About", "href": "/about" },
+    { "label": "Project", "href": "/project" },
+    { "label": "Blog", "href": "/blog" }
+  ],
+  "footer": [
+    [
+      { "label": "Home", "href": "/" },
+      { "label": "Work", "href": "/project" },
+      { "label": "About", "href": "/about" },
+      { "label": "Blog", "href": "/blog" },
+      { "label": "Contact", "href": "/contact" }
+    ],
+    [
+      { "label": "Style Guide", "href": "/style-guide" },
+      { "label": "Licenses", "href": "/licenses" },
+      { "label": "Changelog", "href": "/changelog" },
+      { "label": "Instruction", "href": "/instructions" }
+    ]
+  ],
+  "social": [
+    { "label": "LinkedIn", "href": "https://linkedin.com" },
+    { "label": "Dribbble", "href": "https://dribbble.com" },
+    { "label": "Behance", "href": "https://www.behance.net" },
+    { "label": "X (Twitter)", "href": "https://x.com" }
+  ]
+}

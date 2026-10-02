@@ -1,0 +1,50 @@
+---
+import { isCurrent } from '../../lib/utils';
+
+/**
+ * Webflow "Primary Button" component.
+ * v1 = default (orange), v2 = white (footer CTA), v3 = navbar, v4 = alternate.
+ * The variant classes are the original Webflow variant classes, so the CSS applies unchanged.
+ */
+interface Props {
+  href: string;
+  label: string;
+  variant?: 'v1' | 'v2' | 'v3' | 'v4';
+  target?: string;
+}
+
+const VARIANT_CLASS = {
+  v1: '',
+  v2: 'w-variant-d027b68a-06be-3efe-c2b6-a64916e67898',
+  v3: 'w-variant-aaa1a6f8-36a2-520c-9ba2-efec1eedbd48',
+  v4: 'w-variant-852e1b02-dd4c-f942-7123-52ad7d87498f',
+} as const;
+
+const { href, label, variant = 'v1', target } = Astro.props;
+const current = isCurrent(Astro.url.pathname, href);
+---
+
+<a
+  href={href}
+  target={target}
+  aria-current={current ? 'page' : undefined}
+  class:list={['primary-button', VARIANT_CLASS[variant], 'w-inline-block', current && 'w--current']}
+>
+  <div class="primary-button-text-wrap">
+    <div class="primary-button-icon is-01 w-embed">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="5" cy="5" r="4.25" stroke="currentColor" stroke-width="1.5"></circle>
+      </svg>
+    </div>
+    <div class="primary-button-text-block">
+      <div class="primary-button-text is-01">{label}</div>
+      <div class="primary-button-text is-02" aria-hidden="true">{label}</div>
+    </div>
+    <div class="primary-button-icon is-02 w-embed">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="5" cy="5" r="4.25" stroke="currentColor" stroke-width="1.5"></circle>
+      </svg>
+    </div>
+  </div>
+  <div class="primary-button-overlay"></div>
+</a>

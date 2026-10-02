@@ -1,0 +1,30 @@
+---
+import type { Service } from '../../lib/types';
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+const href = `/service/${service.slug}`;
+---
+
+<div class="service-single-card">
+  <div class="service-card-content">
+    <div class="service-card-top">
+      <div class="service-card-summary">
+        <p class="service-summary">{service.summary}</p>
+      </div>
+      <div class="service-icon-block"><img src={service.arrowIcon} loading="lazy" alt="service-icon" class="service-icon" /></div>
+    </div>
+    <div class="service-card-title-wrap">
+      <div class="service-card-number">{service.cardNumber}</div>
+      <a aria-label={service.title} href={href} class="service-title-link w-inline-block">
+        <div class="service-card-title">{service.title}</div>
+      </a>
+    </div>
+  </div>
+  <div class="service-image-block">
+    <a href={href} class="service-image-link w-inline-block" aria-label={service.title}><img src={service.image} loading="lazy" alt={service.title} class="service-image" /></a>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+---
+import config from '../../config/config.json';
+
+interface Props {
+  /** Page title. Pass the full title, or set `appendSuffix` to get "Title | Vexan - …". */
+  title?: string;
+  appendSuffix?: boolean;
+  description?: string;
+  /** Absolute URL or a path inside /public. */
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+}
+
+const {
+  title,
+  appendSuffix = true,
+  description = config.seo.description,
+  image = config.seo.image,
+  type = 'website',
+  noindex = false,
+} = Astro.props;
+
+const fullTitle = !title ? config.seo.title : appendSuffix ? `${title} | ${config.site.titleSuffix}` : title;
+const site = Astro.site ?? new URL(config.site.url);
+const canonical = new URL(Astro.url.pathname, site).toString();
+const imageUrl = new URL(image, site).toString();
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:url" content={canonical} />
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={config.site.name} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+<link href="/images/favicon.png" rel="icon" type="image/png" sizes="32x32" media="(prefers-color-scheme: light)" />
+<link href="/images/favicon-dark.png" rel="icon" type="image/png" sizes="32x32" media="(prefers-color-scheme: dark)" />
+<link href="/images/favicon-48.png" rel="icon" type="image/png" sizes="48x48" />
+<link href="/images/webclip-180.png" rel="apple-touch-icon" sizes="180x180" />
+<link href="/images/webclip-192.png" rel="icon" type="image/png" sizes="192x192" />
+<link href="/images/webclip.png" rel="icon" type="image/png" sizes="512x512" />

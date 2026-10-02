@@ -1,0 +1,134 @@
+---
+import config from "../../../config/config.json";
+import { telHref } from "../../../lib/utils";
+import SectionSubtitle from '../../global/SectionSubtitle.astro';
+
+const { contact } = config;
+const formEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT || config.forms.endpoint;
+---
+
+<section class="section_contact">
+  <div class="contact-gap">
+    <div class="w-layout-blockcontainer container-main w-container">
+      <div class="contact-wrapper">
+        <div class="contact-top-wrapper">
+          <div class="contact-header-block">
+            <div page-load-1="" class="section-summary-block">
+              <SectionSubtitle text="CONTACT US" />
+            </div>
+            <h1 heading-style-1="" class="heading-style-h1">Let&#x27;s Build Something Great Together</h1>
+          </div>
+          <div page-load-3="" class="contact-icon-wrapper">
+            <a aria-label="Facebook" href={contact.social.facebook} target="_blank" rel="noopener noreferrer" class="contact-icon-block w-inline-block">
+              <div class="contact-cion w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.3931 20.9972V12.8012H16.1581L16.5691 9.59217H13.3931V7.54817C13.3931 6.62217 13.6511 5.98817 14.9801 5.98817H16.6641V3.12717C15.8448 3.03936 15.0212 2.99696 14.1971 3.00017C11.7531 3.00017 10.0751 4.49217 10.0751 7.23117V9.58617H7.32812V12.7952H10.0811V20.9972H13.3931Z" fill="currentColor"></path>
+                </svg>
+              </div>
+            </a>
+            <a aria-label="X (Twitter)" href={contact.social.x} target="_blank" rel="noopener noreferrer" class="contact-icon-block w-inline-block">
+              <div class="contact-cion w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21.7523 5.96017C21.0352 6.26954 20.2547 6.4922 19.4508 6.57892C20.2854 6.08306 20.9104 5.2997 21.2086 4.37579C20.4254 4.8417 19.5674 5.16841 18.6727 5.34142C18.2987 4.94163 17.8464 4.62315 17.344 4.40581C16.8416 4.18847 16.2998 4.07693 15.7523 4.07813C13.5375 4.07813 11.7562 5.87345 11.7562 8.07657C11.7562 8.38595 11.7937 8.69532 11.8547 8.99298C8.53828 8.81954 5.58047 7.23517 3.61406 4.80938C3.25576 5.42137 3.068 6.1182 3.07031 6.82735C3.07031 8.21485 3.77578 9.43829 4.85156 10.1578C4.21759 10.1329 3.59846 9.9586 3.04453 9.64923V9.69845C3.04453 11.6414 4.41797 13.2516 6.24844 13.6219C5.90475 13.7112 5.55119 13.7568 5.19609 13.7578C4.93594 13.7578 4.68984 13.732 4.44141 13.6969C4.94766 15.2813 6.42187 16.432 8.17734 16.4695C6.80391 17.5453 5.08359 18.1781 3.21563 18.1781C2.88047 18.1781 2.57109 18.1664 2.25 18.1289C4.02187 19.2656 6.12422 19.9219 8.38828 19.9219C15.7383 19.9219 19.7602 13.8328 19.7602 8.54767C19.7602 8.37423 19.7602 8.20079 19.7484 8.02735C20.5266 7.45782 21.2086 6.75235 21.7523 5.96017Z" fill="currentColor"></path>
+                </svg>
+              </div>
+            </a>
+            <a aria-label="Instagram" href={contact.social.instagram} target="_blank" rel="noopener noreferrer" class="contact-icon-block w-inline-block">
+              <div class="contact-cion w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11.9991 8.87726C10.2788 8.87726 8.87492 10.2812 8.87492 12.0015C8.87492 13.7218 10.2788 15.1257 11.9991 15.1257C13.7194 15.1257 15.1234 13.7218 15.1234 12.0015C15.1234 10.2812 13.7194 8.87726 11.9991 8.87726ZM21.3694 12.0015C21.3694 10.7077 21.3812 9.4257 21.3085 8.13429C21.2359 6.63429 20.8937 5.30304 19.7968 4.20617C18.6976 3.10695 17.3687 2.7671 15.8687 2.69445C14.5749 2.62179 13.2929 2.63351 12.0015 2.63351C10.7077 2.63351 9.4257 2.62179 8.13429 2.69445C6.63429 2.7671 5.30304 3.10929 4.20617 4.20617C3.10695 5.30538 2.7671 6.63429 2.69445 8.13429C2.62179 9.42804 2.63351 10.7101 2.63351 12.0015C2.63351 13.2929 2.62179 14.5773 2.69445 15.8687C2.7671 17.3687 3.10929 18.6999 4.20617 19.7968C5.30538 20.896 6.63429 21.2359 8.13429 21.3085C9.42804 21.3812 10.7101 21.3694 12.0015 21.3694C13.2952 21.3694 14.5773 21.3812 15.8687 21.3085C17.3687 21.2359 18.6999 20.8937 19.7968 19.7968C20.896 18.6976 21.2359 17.3687 21.3085 15.8687C21.3835 14.5773 21.3694 13.2952 21.3694 12.0015ZM11.9991 16.8085C9.33898 16.8085 7.1921 14.6616 7.1921 12.0015C7.1921 9.34132 9.33898 7.19445 11.9991 7.19445C14.6593 7.19445 16.8062 9.34132 16.8062 12.0015C16.8062 14.6616 14.6593 16.8085 11.9991 16.8085ZM17.003 8.12023C16.3819 8.12023 15.8804 7.61867 15.8804 6.99757C15.8804 6.37648 16.3819 5.87492 17.003 5.87492C17.6241 5.87492 18.1257 6.37648 18.1257 6.99757C18.1259 7.14505 18.097 7.29112 18.0406 7.42741C17.9843 7.5637 17.9016 7.68754 17.7973 7.79182C17.693 7.89611 17.5692 7.9788 17.4329 8.03515C17.2966 8.0915 17.1505 8.12041 17.003 8.12023Z" fill="currentColor"></path>
+                </svg>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="contact-middle-wrapper">
+          <div class="contact-middle-left">
+            <div class="section-header-block">
+              <h2 page-load-4="" class="contact-header">Whether you have a new idea, need a website, or want to improve your digital presence, we&#x27;re here to help. Tell us about your project, and let&#x27;s create something exceptional together.</h2>
+            </div>
+          </div>
+          <div page-load-5="" class="contact-form-wrapper">
+            <div class="contact-form-wrap">
+              <div class="contact-form-block w-form">
+                <form id="email-form" name="email-form" data-name="Email Form" method="post" action={formEndpoint || undefined} data-endpoint={formEndpoint} class="contact-form">
+                  <label class="sr-only" for="contact-gotcha">Leave this field empty</label><input class="sr-only" type="text" name="_gotcha" id="contact-gotcha" tabindex="-1" autocomplete="off" />
+                  <div class="form-block"><label for="name" class="form-text-label">FULL NAME</label><input class="form-text-field w-input" maxlength="256" name="name" data-name="Name" placeholder="Enter your name" type="text" id="name" required=""></div>
+                  <div class="div-block">
+                    <div class="form-block"><label for="Email" class="form-text-label">Email Address</label><input class="form-text-field w-input" maxlength="256" name="Email" data-name="Email" placeholder="Enter your email" type="email" id="Email" required=""></div>
+                    <div class="form-block"><label for="Phone" class="form-text-label">PHONE NUMBER</label><input class="form-text-field w-input" maxlength="256" name="Phone" data-name="Phone" placeholder="Enter your number" type="tel" id="Phone" required=""></div>
+                  </div>
+                  <div class="form-block"><label for="Company-Name" class="form-text-label">COMPANY NAME</label><input class="form-text-field w-input" maxlength="256" name="Company-Name" data-name="Company Name" placeholder="Enter your company" type="text" id="Company-Name" required=""></div>
+                  <div class="form-block"><label class="form-text-label">PROJECT BUDGET</label>
+                    <div class="project-budget-block">
+                      {
+                        config.forms.budgets.map((budget, i) => (
+                          <label class="project-radio-button-block w-radio">
+                            <div class="w-form-formradioinput w-form-formradioinput--inputType-custom project-radio-button w-radio-input" />
+                            <input type="radio" data-name="Project Budget" id={`budget-${i + 1}`} name="Project-Budget" style="opacity:0;position:absolute;z-index:-1" value={budget} />
+                            <span class="radio-button-label w-form-label">{budget}</span>
+                          </label>
+                        ))
+                      }
+                    </div>
+                  </div>
+                  <div class="form-block"><label for="Message" class="form-text-label">MESSAGE</label><textarea placeholder="Enter your message" maxlength="5000" id="Message" name="Message" data-name="Message" class="form-text-field is-large w-input"></textarea></div><input type="submit" data-wait="Please wait..." class="form-button w-button" value="Submit Message">
+                </form>
+                <div class="success-message w-form-done">
+                  <div class="body-text-main text-color-white">Thank you! Your submission has been received!</div>
+                </div>
+                <div class="error-message w-form-fail">
+                  <div class="body-text-main">Oops! Something went wrong while submitting the form.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div scroll-list="" class="contact-bottom-wrapper">
+          <div class="contact-single-card border-none">
+            <div class="contact-card-icon-wrap">
+              <div class="body-text-main text-weight-medium is-inter">Email Us</div>
+              <div class="contact-icon-block-v2">
+                <div class="contact-icon w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.90747 16L0 14.0959L11.4875 2.62877H2.67616L2.70463 0H16V13.286H13.3665V4.53286L1.90747 16Z" fill="currentColor"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="contact-info-block">
+              <a href={`mailto:${contact.email}?subject=email`} class="contact-link">{contact.email}</a>
+              <div class="body-text-main line-height-lg">{contact.emailNote}</div>
+            </div>
+          </div>
+          <div class="contact-single-card">
+            <div class="contact-card-icon-wrap">
+              <div class="body-text-main text-weight-medium is-inter">Call Us</div>
+              <div class="contact-icon-block-v2">
+                <div class="contact-icon w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.90747 16L0 14.0959L11.4875 2.62877H2.67616L2.70463 0H16V13.286H13.3665V4.53286L1.90747 16Z" fill="currentColor"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="contact-info-block">
+              <a href={telHref(contact.phoneSecondary)} class="contact-link">{contact.phoneSecondary}</a>
+              <div class="body-text-main line-height-lg">{contact.hours}</div>
+            </div>
+          </div>
+          <div class="contact-single-card">
+            <div class="contact-card-icon-wrap">
+              <div class="body-text-main text-weight-medium is-inter">Visit Our Office</div>
+              <div class="contact-icon-block-v2">
+                <div class="contact-icon w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.90747 16L0 14.0959L11.4875 2.62877H2.67616L2.70463 0H16V13.286H13.3665V4.53286L1.90747 16Z" fill="currentColor"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="contact-info-block">
+              <div class="contact-location">{contact.addressLine1}</div>
+              <div class="body-text-main line-height-lg">{contact.addressLine2}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,85 @@
+---
+import type { Project } from '../../../lib/types';
+import { renderRichText } from '../../../lib/utils';
+import SectionSubtitle from '../../global/SectionSubtitle.astro';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<section class="section_project-details">
+  <div class="section-gap top-none">
+    <div class="w-layout-blockcontainer container-main w-container">
+      <div class="project-details-wrapper">
+        <div class="project-details-top">
+          <div class="project-detials-header">
+            <div page-scroll-1="" class="section-subtitle-block">
+              <div class="section-subtitle">
+                <div class="subtitle-text">&#123; OVERVIEW &#125;<br></div>
+              </div>
+            </div>
+            <h2 page-scroll-2="" class="project-detials-title">Creating a Better Shopping Experience</h2>
+          </div>
+          <div class="project-details-block">
+            <div scroll-list="" class="project-detials w-richtext" set:html={renderRichText(project.overview)} />
+          </div>
+        </div>
+        <div class="project-cms-wrapper w-dyn-list">
+          {
+            project.gallery.length > 0 ? (
+              <div role="list" class="project-cms-list-grid w-dyn-items">
+                {project.gallery.map((src) => (
+                  <div page-scroll-1="" role="listitem" class="project-cms-item w-dyn-item">
+                    <div class="project-image-block"><img src={src} loading="lazy" alt="" class="project-image is-border" /></div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div class="w-dyn-empty">
+                <div>No items found.</div>
+              </div>
+            )
+          }
+        </div>
+        <div class="project-details-top">
+          <div class="project-detials-header">
+            <div page-scroll-1="" class="section-subtitle-block">
+              <SectionSubtitle text="THE CHALLENGE" />
+            </div>
+          </div>
+          <div class="project-details-block">
+            <div scroll-list="" class="project-detials w-richtext" set:html={renderRichText(project.challenge)} />
+          </div>
+        </div>
+        <div class="project-details-top is-pag">
+          <div class="project-detials-header">
+            <div page-scroll-1="" class="section-subtitle-block">
+              <SectionSubtitle text="PROJECT GOALS" />
+            </div>
+          </div>
+          <div class="project-details-block">
+            <div scroll-list="" class="project-detials w-richtext" set:html={renderRichText(project.goals)} />
+          </div>
+        </div>
+        <div page-scroll-1="" class="project-large-image-block">{project.featureImage && <img src={project.featureImage} loading="lazy" alt={project.title} class="project-large-image" />}</div>
+        <div scroll-list="" class="client-feedback-wrapper">
+          <div class="section-subtitle-block">
+            <SectionSubtitle text="CLIENT FEEDBACK" />
+          </div>
+          <div class="client-feedback-block">
+            <p class="client-feedback-text">{project.clientQuote}</p>
+          </div>
+          <div class="client-details-block"><img src={project.clientAvatar || '/images/Avatar_1.webp'} loading="lazy" alt={project.clientName} class="client-avatar" />
+            <div class="client-details">
+              <div class="client-name">{project.clientName}</div>
+              <div class="client-position">{project.clientPosition}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,77 @@
+---
+import '../styles/normalize.css';
+import '../styles/webflow.css';
+import '../styles/vexan.webflow.css';
+import '../styles/custom.css';
+import config from '../config/config.json';
+import SeoMeta from '../components/global/SeoMeta.astro';
+import Header from '../components/global/Header.astro';
+import Footer from '../components/global/Footer.astro';
+
+interface Props {
+  title?: string;
+  /** false = use the title as-is (home page and CMS detail pages, like the Webflow original). */
+  appendSuffix?: boolean;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  /** The home page renders its own hero navbar inside the hero, so it hides the standard header. */
+  showHeader?: boolean;
+  /** Render header, content and footer directly in <body> without the page/main wrappers (404 page). */
+  bare?: boolean;
+}
+
+const { title, appendSuffix, description, image, type, noindex, showHeader = true, bare = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang={config.site.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <SeoMeta title={title} appendSuffix={appendSuffix} description={description} image={image} type={type} noindex={noindex} />
+    <script is:inline>
+      !(function (o, c) {
+        var n = c.documentElement, t = ' w-mod-';
+        n.className += t + 'js';
+        ('ontouchstart' in o || (o.DocumentTouch && c instanceof DocumentTouch)) && (n.className += t + 'touch');
+        // Safety net: never leave animated content hidden if the animation bundle fails to load.
+        setTimeout(function () { n.classList.add('w-mod-ix3'); }, 4000);
+      })(window, document);
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Inter+Tight:wght@300;400;500;600;700&display=swap"
+    />
+    <slot name="head" />
+  </head>
+  <body>
+    <a href="#main" class="sr-only skip-link">Skip to content</a>
+    {
+      bare ? (
+        <>
+          {showHeader && <Header />}
+          <main id="main">
+            <slot />
+          </main>
+          <Footer />
+        </>
+      ) : (
+        <div class="page-wrapper">
+          {showHeader && <Header />}
+          <div class="main-wrapper" id="main">
+            <slot />
+          </div>
+          <Footer />
+        </div>
+      )
+    }
+    <script>
+      import '../scripts/main.ts';
+    </script>
+  </body>
+</html>

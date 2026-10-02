@@ -1,0 +1,43 @@
+---
+import config from '../../config/config.json';
+import { isCurrent } from '../../lib/utils';
+import PrimaryButton from './PrimaryButton.astro';
+
+/** The `w-nav-menu` shared by the inner-page header and the home hero navbar. */
+interface Props {
+  items: { label: string; href: string }[];
+  /** Primary-button variant of the desktop CTA (v3 on inner pages, v4 in the home hero). */
+  ctaVariant?: 'v3' | 'v4';
+}
+
+const { items, ctaVariant = 'v3' } = Astro.props;
+const path = Astro.url.pathname;
+---
+
+<nav role="navigation" class="nav-menu-content w-nav-menu">
+  <div class="menu-button-v2 is-absolute w-nav-button">
+    <div class="menu-button-icon">
+      <div class="menu-button-line is-01"></div>
+      <div class="menu-button-line is-02"></div>
+      <div class="menu-button-line is-03"></div>
+    </div>
+  </div>
+  <div class="nav-link-block">
+    {
+      items.map((item) => {
+        const current = isCurrent(path, item.href);
+        return (
+          <a href={item.href} aria-current={current ? 'page' : undefined} class:list={['nav-link w-inline-block', current && 'w--current']}>
+            <div class="nav-link-text">{item.label}</div>
+          </a>
+        );
+      })
+    }
+    <div class="nav-button-block is-mobile">
+      <PrimaryButton href={config.header.mobileCta.href} label={config.header.mobileCta.label} variant="v3" />
+    </div>
+  </div>
+  <div class="nav-button-block">
+    <PrimaryButton href={config.header.cta.href} label={config.header.cta.label} variant={ctaVariant} />
+  </div>
+</nav>

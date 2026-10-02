@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+/** Same layout as the Webflow "Instruction" page, with setup steps for the Astro + Strapi theme. */
+const steps: { title: string; text: string; code: string }[] = [
+  {
+    title: '1. Install and run the site',
+    text: 'Requires Node.js 22.12 or newer. The site runs with the bundled demo content, so Strapi is optional for a first look.',
+    code: `npm install\nnpm run dev        # http://localhost:4321\nnpm run build      # production build in ./dist`,
+  },
+  {
+    title: '2. Start the Strapi CMS',
+    text: 'Strapi lives in the ./strapi folder. On first start it creates the Blog, Project and Service collections and imports the demo content and images.',
+    code: `cd strapi\nnpm install\ncp .env.example .env\nnpm run develop    # admin: http://localhost:1337/admin`,
+  },
+  {
+    title: '3. Connect Astro to Strapi',
+    text: 'Create a .env file in the project root. When STRAPI_URL is set, every page reads its content from Strapi at build time.',
+    code: `STRAPI_URL=http://localhost:1337\nSTRAPI_API_TOKEN=          # optional read-only token\nSITE_URL=https://example.com\nPUBLIC_FORM_ENDPOINT=      # e.g. a Formspree endpoint`,
+  },
+  {
+    title: '4. Edit site settings and animations',
+    text: 'Brand, contact details, navigation and FAQs live in src/config. Animations use GSAP and are opt-in through attributes such as page-load-1, page-scroll-2 or heading-style-1 (see src/scripts/animations.ts).',
+    code: `src/config/config.json   # site name, SEO, contact, footer\nsrc/config/menu.json     # header, footer and social links\nsrc/config/faq.json      # FAQ section\n\n<h2 heading-style-2="">Animated heading</h2>\n<div page-scroll-1="">Fades up when scrolled into view</div>`,
+  },
+];
+
+const preStyle = 'display:block;overflow-x:auto;background:#2b2b2b;color:#f8f8f2;padding:0.5em';
+---
+
+<BaseLayout title="Instructions" description="Set up, customize and manage content for the Vexan agency Astro theme with Strapi CMS, GSAP animations and simple configuration files.">
+  <section class="section-licenses">
+    <div class="licenses-gap">
+      <div class="w-layout-blockcontainer container-main w-container">
+        <div class="licenses-wrapper">
+          <div class="instruction-header-block">
+            <h1 heading-style-1="" class="heading-style-h1">Instruction</h1>
+            <p page-load-3="" class="licenses-summary">
+              Follow the steps below to install the theme, connect the Strapi CMS and customize the content and animations. Everything you need to edit lives in
+              the src/config folder and in Strapi.
+            </p>
+          </div>
+          <div class="licenses-content-block">
+            {
+              steps.map((step) => (
+                <div class="licenses-single-block">
+                  <div class="licenses-content-wrap">
+                    <div class="licenses-title-block">
+                      <div class="bodyt-text-large">{step.title}</div>
+                    </div>
+                    <div class="licenses-content">
+                      <div class="licenses-title-details">
+                        <p class="body-text-base">{step.text}</p>
+                        <pre class="code-block w-code-block" style={preStyle}><code class="language-bash" style="white-space:pre-wrap">{step.code}</code></pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

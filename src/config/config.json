@@ -1,0 +1,67 @@
+{
+  "site": {
+    "name": "Vexan",
+    "brand": "Vexan®",
+    "titleSuffix": "Vexan - Creative Agency Astro Theme",
+    "url": "https://example.com",
+    "lang": "en",
+    "logo": "/images/vexan-logo.svg",
+    "logoHero": "/images/vexan-logo-hero.svg",
+    "logoFooter": "/images/vexan-logo-footer.svg"
+  },
+  "seo": {
+    "title": "Vexan - Creative Agency Astro Theme",
+    "description": "Vexan is a modern agency Astro theme built for creative agencies, digital studios, and businesses seeking a bold online presence.",
+    "image": "/images/og-image.webp"
+  },
+  "contact": {
+    "email": "hello@example.com",
+    "phone": "(555) 010-0123",
+    "phoneSecondary": "+1 (555) 010-0145",
+    "hours": "Available Monday–Friday, 9:00 AM – 6:00 PM",
+    "emailNote": "For project inquiries, partnerships, and general questions.",
+    "addressLine1": "123 Creative Street",
+    "addressLine2": "New York, NY 10001, United States",
+    "social": {
+      "facebook": "https://facebook.com",
+      "x": "https://x.com",
+      "instagram": "https://www.instagram.com"
+    }
+  },
+  "footer": {
+    "summary": "Building modern digital experiences that help brands grow, connect, and succeed online.",
+    "ctaSubtitle": "CONTACT US",
+    "ctaHeading": "Share your goals with us, and we'll help you find the perfect solution for your business.",
+    "ctaButton": {
+      "label": "Contact Now",
+      "href": "/contact"
+    },
+    "copyright": "© 2026 Vexan®",
+    "rights": "All rights reserved.",
+    "credit": {
+      "prefix": "By",
+      "label": "Astro",
+      "href": "https://astro.build"
+    }
+  },
+  "header": {
+    "cta": {
+      "label": "Contact Now",
+      "href": "/contact"
+    },
+    "mobileCta": {
+      "label": "More About Us",
+      "href": "/contact"
+    }
+  },
+  "forms": {
+    "endpoint": "",
+    "budgets": [
+      "Under $2k",
+      "$2k – $5k",
+      "$5k – $10k",
+      "$10k – $25k",
+      "$25k+"
+    ]
+  }
+}

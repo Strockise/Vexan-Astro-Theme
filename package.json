@@ -1,0 +1,35 @@
+{
+  "name": "vexan-astro-theme",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Vexan: a creative agency Astro theme with Strapi CMS and GSAP animations.",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "format": "prettier --write \"src/**/*.{astro,ts,json,css}\"",
+    "strapi:install": "npm --prefix strapi install",
+    "strapi:dev": "npm --prefix strapi run develop",
+    "strapi:build": "npm --prefix strapi run build",
+    "strapi:start": "npm --prefix strapi run start"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.5",
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.26",
+    "marked": "^18.0.14"
+  },
+  "devDependencies": {
+    "prettier": "^3.9.9",
+    "prettier-plugin-astro": "^1.1.0"
+  },
+  "allowScripts": {
+    "esbuild": true
+  }
+}

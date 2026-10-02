@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogHero from '../../components/sections/blog/BlogHero.astro';
+import BlogList from '../../components/sections/blog/BlogList.astro';
+import Faq from '../../components/global/Faq.astro';
+---
+
+<BaseLayout
+  title="Blog"
+  description="Discover useful insights, creative ideas, industry trends, and expert tips through the Vexan agency Astro theme's engaging blog experience."
+>
+  <BlogHero />
+  <BlogList />
+  <Faq variant="compact" />
+</BaseLayout>

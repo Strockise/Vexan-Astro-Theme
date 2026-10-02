@@ -1,0 +1,123 @@
+---
+import { getProjects } from '../../../lib/cms';
+import ProjectCard from '../../cards/ProjectCard.astro';
+import PrimaryButton from '../../global/PrimaryButton.astro';
+
+const projects = await getProjects();
+---
+
+<section class="section_project-v2">
+  <div class="service-triggre-block"></div>
+  <div class="section-gap">
+    <div class="w-layout-blockcontainer container-main w-container">
+      <div class="project-wrapper">
+        <div class="project-top-wrapper">
+          <div class="section-header-block max-width-44-rem">
+            <h2 heading-style-2="" class="heading-style-2">Explore some of our recent work where strategy, creativity, and technology came together to create meaningful outcomes.</h2>
+          </div>
+          <div page-scroll-2="" class="project-button-block">
+            <PrimaryButton href="/project" label="View All Projects" />
+          </div>
+        </div>
+        <div page-scroll-3="" class="project-content-block">
+          <div class="project-bottom-wrapper">
+            <div class="project-overlay-block"><img loading="lazy" src="/images/Work.svg" alt="project-overlay-image" class="project-overlay-image"></div>
+            <div class="project-content-wrapper">
+              <div class="project-card-block is-gap">
+                <div class="project-cms-wrapper is-01 w-dyn-list">
+                  {
+                    projects.slice(0, 1).length > 0 ? (
+                      <div role="list" class="project-cms-list w-dyn-items">
+                        {projects.slice(0, 1).map((project) => (
+                          <div role="listitem" class="project-cms-list w-dyn-item">
+                            <ProjectCard project={project} variant="feature" />
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div class="w-dyn-empty">
+                        <div>No items found.</div>
+                      </div>
+                    )
+                  }
+                </div>
+                <div class="project-cms-wrapper is-02 w-dyn-list">
+                  {
+                    projects.slice(1, 2).length > 0 ? (
+                      <div role="list" class="project-cms-list w-dyn-items">
+                        {projects.slice(1, 2).map((project) => (
+                          <div role="listitem" class="project-cms-list w-dyn-item">
+                            <ProjectCard project={project} variant="feature" />
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div class="w-dyn-empty">
+                        <div>No items found.</div>
+                      </div>
+                    )
+                  }
+                </div>
+              </div>
+              <div class="project-card-block">
+                <div class="project-cms-wrapper is-03 w-dyn-list">
+                  {
+                    projects.slice(2, 4).length > 0 ? (
+                      <div role="list" class="project-cms-list is-grid w-dyn-items">
+                        {projects.slice(2, 4).map((project) => (
+                          <div role="listitem" class="project-cms-list w-dyn-item">
+                            <ProjectCard project={project} variant="feature" />
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div class="w-dyn-empty">
+                        <div>No items found.</div>
+                      </div>
+                    )
+                  }
+                </div>
+              </div>
+              <div class="project-card-block is-gap">
+                <div class="project-cms-wrapper is-02 w-dyn-list">
+                  {
+                    projects.slice(4, 5).length > 0 ? (
+                      <div role="list" class="project-cms-list w-dyn-items">
+                        {projects.slice(4, 5).map((project) => (
+                          <div role="listitem" class="project-cms-list w-dyn-item">
+                            <ProjectCard project={project} variant="feature" />
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div class="w-dyn-empty">
+                        <div>No items found.</div>
+                      </div>
+                    )
+                  }
+                </div>
+                <div class="project-cms-wrapper is-01 w-dyn-list">
+                  {
+                    projects.slice(5, 6).length > 0 ? (
+                      <div role="list" class="project-cms-list w-dyn-items">
+                        {projects.slice(5, 6).map((project) => (
+                          <div role="listitem" class="project-cms-list w-dyn-item">
+                            <ProjectCard project={project} variant="feature" />
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div class="w-dyn-empty">
+                        <div>No items found.</div>
+                      </div>
+                    )
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

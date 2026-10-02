@@ -1,0 +1,100 @@
+---
+import { getBlogs } from '../../../lib/cms';
+import type { Blog } from '../../../lib/types';
+import BlogCard from '../../cards/BlogCard.astro';
+import SliderArrows from '../../ui/SliderArrows.astro';
+
+/** The first two posts are featured in BlogHero; this grid lists the rest. */
+const posts = (await getBlogs()).slice(2);
+
+/**
+ * Desktop masonry: every 9 posts form three columns of [2 + 1], [1 + 2], [2 + 1] cards
+ * (wrappers "is-01" hold two cards, "is-02" one), exactly like the Webflow layout.
+ */
+const COLUMNS: { variant: 'is-01' | 'is-02'; count: number }[][] = [
+  [{ variant: 'is-01', count: 2 }, { variant: 'is-02', count: 1 }],
+  [{ variant: 'is-02', count: 1 }, { variant: 'is-01', count: 2 }],
+  [{ variant: 'is-01', count: 2 }, { variant: 'is-02', count: 1 }],
+];
+type Group = { variant: 'is-01' | 'is-02'; items: Blog[] };
+const columns: Group[][] = [];
+let cursor = 0;
+while (cursor < posts.length) {
+  for (const column of COLUMNS) {
+    if (cursor >= posts.length) break;
+    const groups: Group[] = [];
+    for (const g of column) {
+      const items = posts.slice(cursor, cursor + g.count);
+      cursor += items.length;
+      if (items.length) groups.push({ variant: g.variant, items });
+    }
+    columns.push(groups);
+  }
+}
+---
+
+<section class="section-blog">
+  <div class="section-gap">
+    <div class="w-layout-blockcontainer container-main w-container">
+      <div class="blog-wrapper">
+        <div class="blog-header-block">
+          <div class="section-header-block">
+            <h2 heading-style-2="">Latest Articles</h2>
+          </div>
+        </div>
+        <div class="blog-wrapper-main is-desktop">
+          {
+            columns.map((groups, c) => (
+              <div class="blog-content-block">
+                {groups.map((group, g) => (
+                  <div class={`blog-collection-wrapper ${group.variant} w-dyn-list`}>
+                    <div role="list" class:list={['blog-collection-list', group.variant === 'is-02' && 'is-block', 'w-dyn-items']}>
+                      {group.items.map((post) =>
+                        c === 0 && g === 0 ? (
+                          <div page-scroll-2="" role="listitem" class="blog-collection-item w-dyn-item">
+                            <BlogCard post={post} variant="content" />
+                          </div>
+                        ) : (
+                          <div page-scroll-3="" role="listitem" class="blog-collection-item w-dyn-item">
+                            <BlogCard post={post} variant="content" />
+                          </div>
+                        )
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))
+          }
+          {
+            posts.length === 0 && (
+              <div class="w-dyn-empty">
+                <div>No items found.</div>
+              </div>
+            )
+          }
+        </div>
+        <div class="blog-wrapper-main is-mobile">
+          <div data-delay="4000" data-animation="slide" class="slider-block w-slider" data-autoplay="false" data-easing="ease" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="3" data-duration="500" data-infinite="true">
+            <div class="slider-mask w-slider-mask">
+              {
+                posts.map((post) => (
+                  <div class="slider w-slide">
+                    <div class="blog-collection-wrapper is-01 w-dyn-list">
+                      <div role="list" class="blog-collection-list w-dyn-items">
+                        <div role="listitem" class="blog-collection-item w-dyn-item">
+                          <BlogCard post={post} variant="content" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+            <SliderArrows />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

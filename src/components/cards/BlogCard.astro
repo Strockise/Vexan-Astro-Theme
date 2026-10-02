@@ -1,0 +1,136 @@
+---
+import type { Blog } from '../../lib/types';
+import { formatDate } from '../../lib/utils';
+
+/**
+ * Blog card variants (markup copied 1:1 from the Webflow template):
+ * - "home-small" / "home-large": home page blog track (uses homeTitle / homeSummary / image)
+ * - "large" / "small": blog page hero and "more posts" on article pages (uses mainImage)
+ * - "content": blog page grid and mobile slider (read time + date)
+ */
+interface Props {
+  post: Blog;
+  variant: 'home-small' | 'home-large' | 'large' | 'small' | 'content';
+}
+
+const { post, variant } = Astro.props;
+const href = `/blog/${post.slug}`;
+const isHome = variant.startsWith('home');
+const title = isHome ? post.homeTitle || post.title : post.title;
+const summary = isHome ? post.homeSummary || post.summary : post.summary;
+const image = isHome ? post.image : post.mainImage;
+const circle = `<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="5" cy="5" r="4.25" stroke="currentColor" stroke-width="1.5"></circle></svg>`;
+---
+
+{
+  variant === 'home-small' && (
+    <div class="blog-single-card">
+      <div class="blog-image-block">
+        <a href={href} class="blog-image-link w-inline-block" aria-label={title}><img loading="lazy" src={image} alt={title} class="blog-image" /></a>
+      </div>
+      <div class="blog-card-content">
+        <a aria-label={title} href={href} class="blog-title-link w-inline-block">
+          <div class="blog-title">{title}</div>
+        </a>
+        <p class="blog-card-summary">{summary}</p>
+      </div>
+    </div>
+  )
+}
+
+{
+  variant === 'home-large' && (
+    <div class="blog-single-card is-grid">
+      <div class="blog-image-block">
+        <a href={href} class="blog-image-link w-inline-block" aria-label={title}><img loading="lazy" src={image} alt={title} class="blog-image" /></a>
+      </div>
+      <div class="blog-large-card-content">
+        <div class="blog-card-content">
+          <a aria-label={title} href={href} class="blog-title-link w-inline-block">
+            <div class="blog-title is-large">{title}</div>
+          </a>
+          <p class="blog-card-summary">{summary}</p>
+        </div>
+        <div class="blog-card-button">
+          <a href={href} class="blog-button w-inline-block">
+            <div class="blog-button-text-v1">
+              <div class="blog-button-iocn is-01 w-embed" set:html={circle} />
+              <div class="blog-button-text-block">
+                <div class="primary-button-text is-01">Read Article</div>
+                <div class="primary-button-text is-02" aria-hidden="true">Read Article</div>
+              </div>
+              <div class="blog-button-iocn is-02 w-embed" set:html={circle} />
+            </div>
+            <div class="blog-button-overlay"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+{
+  variant === 'large' && (
+    <div class="blog-large-card">
+      <div class="blog-image-block">
+        <a href={href} class="blog-image-link w-inline-block" aria-label={title}><img loading="lazy" src={image} alt={title} class="blog-image" /></a>
+      </div>
+      <div class="blog-large-card-content">
+        <div class="blog-card-content">
+          <a aria-label={title} href={href} class="blog-title-link w-inline-block">
+            <div class="blog-title is-large">{title}</div>
+          </a>
+          <p class="blog-card-summary">{summary}</p>
+        </div>
+        <div class="blog-card-button">
+          <a href={href} class="blog-button-v1 w-inline-block">
+            <div class="blog-button-text">
+              <div class="text-button">Read Article</div>
+              <div class="text-button is-02" aria-hidden="true">Read Article</div>
+            </div>
+            <div class="button-icon w-embed" set:html={circle} />
+          </a>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+{
+  variant === 'small' && (
+    <div class="blog-small-card">
+      <div class="blog-image-block">
+        <a href={href} class="blog-image-link w-inline-block" aria-label={title}><img loading="lazy" src={image} alt={title} class="blog-image" /></a>
+      </div>
+      <div class="blog-card-content is-padding">
+        <a aria-label={title} href={href} class="blog-title-link w-inline-block">
+          <div class="blog-title">{title}</div>
+        </a>
+        <div class="blog-card-text-block">
+          <p class="blog-card-summary">{summary}</p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+{
+  variant === 'content' && (
+    <div class="blog-content-card">
+      <div class="blog-image-block">
+        <a href={href} class="blog-image-link w-inline-block" aria-label={title}><img loading="lazy" src={image} alt={title} class="blog-image" /></a>
+      </div>
+      <div class="blog-card-content">
+        <div class="blog-read-time-wrapper">
+          <div class="blog-read-time-text">{post.readTime}</div>
+          <div class="blog-card-point"></div>
+          <div class="blog-read-time-text">{formatDate(post.date)}</div>
+        </div>
+        <a aria-label={title} href={href} class="blog-title-link w-inline-block">
+          <div class="blog-title">{title}</div>
+        </a>
+        <p class="blog-card-summary">{summary}</p>
+      </div>
+    </div>
+  )
+}

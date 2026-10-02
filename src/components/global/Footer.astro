@@ -1,0 +1,74 @@
+---
+import config from '../../config/config.json';
+import menu from '../../config/menu.json';
+import { isCurrent, telHref } from '../../lib/utils';
+import PrimaryButton from './PrimaryButton.astro';
+import SectionSubtitle from './SectionSubtitle.astro';
+
+const path = Astro.url.pathname;
+const { footer, contact, site } = config;
+---
+
+<section class="section-footer">
+  <div class="footer-bg-layer">
+    <div class="w-layout-blockcontainer container-main w-container">
+      <div page-scroll-2="" class="footer-wrapper">
+        <div class="footer-top-wrapper">
+          <div class="footer-link-grid">
+            {
+              menu.footer.map((group) => (
+                <div class="footer-link-block">
+                  {group.map((link) => {
+                    const current = isCurrent(path, link.href);
+                    return (
+                      <a href={link.href} aria-current={current ? 'page' : undefined} class:list={['footer-link', current && 'w--current']}>
+                        {link.label}
+                      </a>
+                    );
+                  })}
+                </div>
+              ))
+            }
+            <div class="footer-link-block">
+              {
+                menu.social.map((link) => (
+                  <a href={link.href} target="_blank" rel="noopener noreferrer" class="footer-link">
+                    {link.label}
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+          <div class="footer-content-wrapper">
+            <div class="section-subtitle-block">
+              <SectionSubtitle text={footer.ctaSubtitle} variant="v2" />
+            </div>
+            <div class="section-header-block">
+              <h2 class="heading-style-2 text-color-white">{footer.ctaHeading}</h2>
+            </div>
+            <div class="footer-button-block">
+              <PrimaryButton href={footer.ctaButton.href} label={footer.ctaButton.label} variant="v2" />
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom-wrapper">
+          <div class="footer-bottom-left">
+            <div class="footer-summary-block">
+              <p class="bodyt-text-large text-color-white">{footer.summary}</p>
+            </div>
+            <div class="footer-brand-block"><img loading="lazy" src={site.logoFooter} alt="footer-brand" class="footer-brand" /></div>
+          </div>
+          <div class="footer-copyright-wrapper">
+            <a href={`mailto:${contact.email}?subject=email`} class="footer-copyright-link">{contact.email}</a>
+            <a href={telHref(contact.phone)} class="footer-copyright-link">{contact.phone}</a>
+            <div class="footer-copyright-text">{footer.copyright}</div>
+            <div class="footer-copyright-text">{footer.rights}</div>
+            <div class="footer-copyright-text">
+              {footer.credit.prefix} <a href={footer.credit.href} target="_blank" rel="noopener noreferrer" class="footer-copyright-link">{footer.credit.label}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,48 @@
+---
+import { getServices } from '../../../lib/cms';
+import ServiceCard from '../../cards/ServiceCard.astro';
+import SectionSubtitle from '../../global/SectionSubtitle.astro';
+
+const services = await getServices();
+---
+
+<section class="section_service">
+  <div class="service-sticky-block">
+    <div class="w-layout-blockcontainer container-fluid container-type w-container">
+      <div class="service-wrapper">
+        <div class="service-bg-color">
+          <div class="service-top-wrapper">
+            <div class="section-subtitle-block">
+              <SectionSubtitle text="Our Services" variant="v2" />
+            </div>
+            <div class="service-summary-block">
+              <h2 class="heading-style-2 text-color-white">We provide comprehensive digital solutions that support businesses at every stage from launching and expanding to thriving in today’s highly competitive marketplace.</h2>
+            </div>
+          </div>
+        </div>
+        <div class="service-bottom-wrapper">
+          <div class="service-content-wrapper">
+            <div class="service-cms-wrapper-v1 w-dyn-list">
+              <div role="list" class="service-cms-list w-dyn-items">
+                {
+                  services.map((service) => (
+                    <div role="listitem" class="service-cms-item w-dyn-item">
+                      <ServiceCard service={service} />
+                    </div>
+                  ))
+                }
+              </div>
+              {
+                services.length === 0 && (
+                  <div class="w-dyn-empty">
+                    <div>No items found.</div>
+                  </div>
+                )
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,69 @@
+---
+import { getProjects } from '../../../lib/cms';
+import ProjectCard from '../../cards/ProjectCard.astro';
+import SliderArrows from '../../ui/SliderArrows.astro';
+import SectionSubtitle from '../../global/SectionSubtitle.astro';
+
+const projects = await getProjects();
+---
+
+<section class="section_project">
+  <div class="w-layout-blockcontainer container-main w-container">
+    <div class="project-wrapper-main">
+      <div class="project-top-block">
+        <div class="project-header-block">
+          <div page-load-1="" class="section-subtitle-block">
+            <SectionSubtitle text="OUR PORTFOLIO" />
+          </div>
+          <h1 heading-style-1="" class="heading-style-h1">Work That Creates Real Business Impact</h1>
+        </div>
+        <div class="project-summary-block">
+          <p page-load-3="" class="bodyt-text-large text-color-gray-700">Every project we take on is driven by strategy, creativity, and measurable results. Explore a selection of websites, digital products, and brand experiences we&#x27;ve crafted for businesses around the world.</p>
+        </div>
+      </div>
+      <div page-load-4="" class="project-content-wrap">
+              <div class="project-bottom-wrapper">
+                <div class="project-content-wrapper is-desktop">
+                  <div class="project-cms-wrapper w-dyn-list">
+                    {
+                      projects.length > 0 ? (
+                        <div role="list" class="project-cms-list project-grid w-dyn-items">
+                          {projects.map((project) => (
+                            <div role="listitem" class="project-cms-list w-dyn-item">
+                              <ProjectCard project={project} />
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div class="w-dyn-empty">
+                          <div>No items found.</div>
+                        </div>
+                      )
+                    }
+                  </div>
+                </div>
+                <div class="project-content-wrapper is-mobile">
+                  <div data-delay="4000" data-animation="slide" class="slider-block w-slider" data-autoplay="false" data-easing="ease" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="3" data-duration="500" data-infinite="true">
+                    <div class="slider-mask w-slider-mask">
+                      {
+                        projects.map((project) => (
+                          <div class="slider w-slide">
+                            <div class="project-cms-wrapper w-dyn-list">
+                              <div role="list" class="project-cms-list project-grid w-dyn-items">
+                                <div role="listitem" class="project-cms-list w-dyn-item">
+                                  <ProjectCard project={project} />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))
+                      }
+                    </div>
+                    <SliderArrows />
+                  </div>
+                </div>
+              </div>
+            </div>
+    </div>
+  </div>
+</section>

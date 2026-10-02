@@ -1,0 +1,39 @@
+---
+import type { Project } from '../../lib/types';
+
+/**
+ * Project card.
+ * - "feature": home page card with the cursor-following "View More" button
+ * - "grid": project page card (taller image)
+ */
+interface Props {
+  project: Project;
+  variant?: 'feature' | 'grid';
+}
+
+const { project, variant = 'grid' } = Astro.props;
+const href = `/project/${project.slug}`;
+const feature = variant === 'feature';
+---
+
+<div class="project-single-card">
+  <div class:list={['project-image-block', feature && 'text-align-center']}>
+    <a href={href} class="project-image-link w-inline-block" aria-label={project.title}><img loading="lazy" src={project.mainImage} alt={project.title} class:list={['project-image', !feature && 'is-height']} /></a>
+    {
+      feature && (
+        <a aria-label={`View ${project.title}`} href={href} class="view-more-button w-inline-block" tabindex="-1">
+          <div>
+            View <br />
+            More
+          </div>
+        </a>
+      )
+    }
+  </div>
+  <div class="project-title-block">
+    <a aria-label={project.title} href={href} class="project-title-link w-inline-block">
+      <div>{project.title}</div>
+    </a>
+    <div class="poject-year">{project.year}</div>
+  </div>
+</div>

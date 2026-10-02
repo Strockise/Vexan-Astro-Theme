@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AboutHero from '../components/sections/about/AboutHero.astro';
+import Marquee from '../components/sections/about/Marquee.astro';
+import About from '../components/sections/about/About.astro';
+import Values from '../components/sections/about/Values.astro';
+import Process from '../components/sections/about/Process.astro';
+import Team from '../components/sections/about/Team.astro';
+import Recognition from '../components/sections/about/Recognition.astro';
+import Faq from '../components/global/Faq.astro';
+---
+
+<BaseLayout
+  title="About"
+  description="Learn more about Vexan, a modern agency Astro theme designed to showcase your team, expertise, values, and creative approach."
+>
+  <AboutHero />
+  <Marquee />
+  <About />
+  <Values />
+  <Process />
+  <Team />
+  <Recognition />
+  <Faq />
+</BaseLayout>

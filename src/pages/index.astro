@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/home/Hero.astro';
+import Story from '../components/sections/home/Story.astro';
+import Services from '../components/sections/home/Services.astro';
+import Projects from '../components/sections/home/Projects.astro';
+import Process from '../components/sections/home/Process.astro';
+import Stats from '../components/sections/home/Stats.astro';
+import Testimonials from '../components/sections/home/Testimonials.astro';
+import Blog from '../components/sections/home/Blog.astro';
+---
+
+<BaseLayout showHeader={false}>
+  <div class="page-color-block">
+    <Hero />
+    <Story />
+  </div>
+  <Services />
+  <div class="page-over-block">
+    <div class="page-color-block">
+      <Projects />
+      <Process />
+      <Stats />
+      <Testimonials />
+      <Blog />
+    </div>
+  </div>
+</BaseLayout>

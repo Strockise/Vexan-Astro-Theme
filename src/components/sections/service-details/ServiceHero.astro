@@ -1,0 +1,40 @@
+---
+import type { Service } from '../../../lib/types';
+import { renderRichText } from '../../../lib/utils';
+import PrimaryButton from '../../global/PrimaryButton.astro';
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+---
+
+<section class="section_service-details-hero">
+  <div class="w-layout-blockcontainer container-main w-container">
+    <div class="service-detials-hero-wrapper">
+      <div class="service-detials-left">
+        <div class="service-hero-content">
+          <div page-load-1="" class="section-subtitle-block">
+            <div class="section-subtitle">
+              <div class="subtitle-text">{service.title}</div>
+            </div>
+          </div>
+          <div class="service-header-block">
+            <h1 class="heading-style-h1">{service.detailsTitle || service.title}</h1>
+          </div>
+          <div class="section-summary-block max-width-35-rem">
+            <p page-load-3="" class="bodyt-text-large text-color-gray-700">{service.summary}</p>
+          </div>
+          <div page-load-4="" class="service-detials-button">
+            <PrimaryButton href="/contact" label="More About Us" />
+          </div>
+        </div>
+        <div class="service-hero-list-block">
+          <div scroll-list="" class="service-hero-list w-richtext" set:html={renderRichText(service.quickStats)} />
+        </div>
+      </div>
+      <div page-load-3="" class="service-detials-right"><img src="/images/Service-Details-Image.webp" loading="lazy" sizes="(max-width: 767px) 100vw, (max-width: 991px) 728px, 940px" srcset="/images/Service-Details-Image-p-500.webp 500w, /images/Service-Details-Image-p-800.webp 800w, /images/Service-Details-Image-p-1080.webp 1080w, /images/Service-Details-Image.webp 1440w" alt="service-details-image" class="service-details-image"></div>
+    </div>
+  </div>
+</section>

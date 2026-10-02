@@ -1,0 +1,22 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceHero from '../../components/sections/service-details/ServiceHero.astro';
+import ServiceDetails from '../../components/sections/service-details/ServiceDetails.astro';
+import Faq from '../../components/global/Faq.astro';
+import { getServices } from '../../lib/cms';
+import type { Service } from '../../lib/types';
+
+export const getStaticPaths = (async () => {
+  const services = await getServices();
+  return services.map((service) => ({ params: { slug: service.slug }, props: { service } }));
+}) satisfies GetStaticPaths;
+
+const { service } = Astro.props as { service: Service };
+---
+
+<BaseLayout title={service.title} appendSuffix={false} description={service.summary} image={service.thumbnailImage}>
+  <ServiceHero service={service} />
+  <ServiceDetails service={service} />
+  <Faq />
+</BaseLayout>

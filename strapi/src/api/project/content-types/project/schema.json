@@ -1,0 +1,119 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projects",
+  "info": {
+    "singularName": "project",
+    "pluralName": "projects",
+    "displayName": "Project",
+    "description": "Portfolio projects: /project and /project/[slug]"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "mainImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "thumbnailImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "year": {
+      "type": "string",
+      "required": false
+    },
+    "detailsTitle": {
+      "type": "string",
+      "required": false
+    },
+    "detailsSummary": {
+      "type": "text",
+      "required": false
+    },
+    "industry": {
+      "type": "string",
+      "required": false
+    },
+    "service": {
+      "type": "string",
+      "required": false
+    },
+    "duration": {
+      "type": "string",
+      "required": false
+    },
+    "role": {
+      "type": "string",
+      "required": false
+    },
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "overview": {
+      "type": "richtext"
+    },
+    "challenge": {
+      "type": "richtext"
+    },
+    "goals": {
+      "type": "richtext"
+    },
+    "featureImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "clientQuote": {
+      "type": "text",
+      "required": false
+    },
+    "clientName": {
+      "type": "string",
+      "required": false
+    },
+    "clientPosition": {
+      "type": "string",
+      "required": false
+    },
+    "clientAvatar": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "order": {
+      "type": "integer",
+      "default": 0,
+      "required": true
+    }
+  }
+}

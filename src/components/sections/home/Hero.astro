@@ -1,0 +1,71 @@
+---
+import config from '../../../config/config.json';
+import menu from '../../../config/menu.json';
+import NavMenu from '../../global/NavMenu.astro';
+---
+
+<section class="section_hero">
+  <div class="w-layout-blockcontainer container-fluid w-container">
+    <div class="hero-sticky-container">
+      <div class="hero-wrapper">
+        <div class="hero-nav-wrapper">
+          <div data-animation="over-right" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="nero-nav w-nav">
+            <div class="container-main w-container">
+              <div class="nav-content-block">
+                <a href="/" aria-current="page" aria-label="home" class="hero-brand-logo w-nav-brand w--current"><img loading="eager" src={config.site.logoHero} alt="brand-logo" class="hero-brand" /></a>
+                <div class="menu-button-block">
+                  <div class="menu-button w-nav-button">
+                    <div class="menu-button-icon">
+                      <div class="menu-button-line is-01"></div>
+                      <div class="menu-button-line is-02"></div>
+                      <div class="menu-button-line is-03"></div>
+                    </div>
+                  </div>
+                </div>
+                <NavMenu items={menu.main} ctaVariant="v4" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-content-wrapper">
+          <div class="hero-content-card">
+            <div class="hero-image-block"><img src="/images/Hero-Image-3.webp" loading="eager" fetchpriority="high" sizes="(max-width: 767px) 100vw, (max-width: 991px) 728px, 940px" srcset="/images/Hero-Image-3-p-500.webp 500w, /images/Hero-Image-3-p-800.webp 800w, /images/Hero-Image-3-p-1080.webp 1080w, /images/Hero-Image-3-p-1600.webp 1600w, /images/Hero-Image-3-p-2000.webp 2000w, /images/Hero-Image-3-p-2600.webp 2600w, /images/Hero-Image-3-p-3200.webp 3200w, /images/Hero-Image-3.webp 3840w" alt="hero-image" class="hero-image is-01"><img src="/images/Hero-Image-One.webp" loading="lazy" sizes="(max-width: 767px) 100vw, (max-width: 991px) 728px, 940px" srcset="/images/0104b028b0b6ef91e453b654b4679d3f_Hero-Image-One-p-500.webp 500w, /images/0104b028b0b6ef91e453b654b4679d3f_Hero-Image-One-p-800.webp 800w, /images/0104b028b0b6ef91e453b654b4679d3f_Hero-Image-One-p-1080.webp 1080w, /images/0104b028b0b6ef91e453b654b4679d3f_Hero-Image-One-p-1600.webp 1600w, /images/0104b028b0b6ef91e453b654b4679d3f_Hero-Image-One-p-2000.webp 2000w, /images/Hero-Image-One.webp 2880w" alt="hero-image" class="hero-image is-02"><img src="/images/Hero-Image-2.webp" loading="lazy" sizes="(max-width: 767px) 100vw, (max-width: 991px) 728px, 940px" srcset="/images/Hero-Image-2-p-500.webp 500w, /images/Hero-Image-2-p-800.webp 800w, /images/Hero-Image-2-p-1080.webp 1080w, /images/Hero-Image-2-p-1600.webp 1600w, /images/Hero-Image-2-p-2000.webp 2000w, /images/Hero-Image-2-p-2600.webp 2600w, /images/Hero-Image-2-p-3200.webp 3200w, /images/Hero-Image-2.webp 3840w" alt="hero-image" class="hero-image is-03">
+              <div class="hero-overlay"></div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-container">
+          <div class="hero-summary-wrap">
+            <div class="hero-summary-block is-01">
+              <h1 class="hero-summary">Vexan® _____helps ambitious brands stand out with strategic design, modern websites, and user-focused digital experiences that convert visitors into customers.</h1>
+            </div>
+            <div class="hero-summary-block is-02">
+              <h2 class="hero-summary">Vexan® _____helps ambitious brands stand out with strategic design, modern websites, and user-focused digital experiences that convert visitors into customers.</h2>
+            </div>
+            <div class="hero-summary-block is-03">
+              <h2 class="hero-summary">Vexan® _____helps ambitious brands stand out with strategic design, modern websites, and user-focused digital experiences that convert visitors into customers.</h2>
+            </div>
+          </div>
+          <div class="hero-gallary-wrap">
+            <div class="hero-gallery-line-wrap">
+              <div class="hero-gallery-line-block">
+                <div class="hero-gallery-line is-01"></div>
+              </div>
+              <div class="hero-gallery-line-block">
+                <div class="hero-gallery-line is-02"></div>
+              </div>
+              <div class="hero-gallery-line-block">
+                <div class="hero-gallery-line is-03"></div>
+              </div>
+            </div>
+            <div class="hero-gallary-image-wrap">
+              <div class="hero-gallery-image-block"><img src="/images/Gallery-Image-1.webp" loading="lazy" alt="hero-gallery-image" class="hero-gallery-image is-01"></div>
+              <div class="hero-gallery-image-block"><img src="/images/Gallery-Image-2.webp" loading="lazy" alt="hero-gallery-image" class="hero-gallery-image is-02"></div>
+              <div class="hero-gallery-image-block"><img src="/images/Gallery-Image-3.webp" loading="lazy" alt="hero-gallery-image" class="hero-gallery-image is-03"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

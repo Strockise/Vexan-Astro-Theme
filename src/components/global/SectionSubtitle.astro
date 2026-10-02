@@ -1,0 +1,16 @@
+---
+/**
+ * Webflow "Section Subtitle" component: renders `{ TEXT }`.
+ * v1 = dark text (default), v2 = light text (on dark backgrounds).
+ */
+interface Props {
+  text: string;
+  variant?: 'v1' | 'v2';
+}
+
+const { text, variant = 'v1' } = Astro.props;
+---
+
+<div class="section-subtitle">
+  <div class:list={['subtitle-text', variant === 'v2' && 'w-variant-cfdce502-ea69-5f84-2790-5878c5c5f72a']}>{`{ ${text} }`}</div>
+</div>

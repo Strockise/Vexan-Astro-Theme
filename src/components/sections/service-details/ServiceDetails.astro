@@ -1,0 +1,51 @@
+---
+import type { Service } from '../../../lib/types';
+import { renderRichText } from '../../../lib/utils';
+import SectionSubtitle from '../../global/SectionSubtitle.astro';
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+---
+
+<section class="section_service-details">
+  <div class="w-layout-blockcontainer container-main w-container">
+    <div class="service-details-wrapper">
+      <div class="service-details-content">
+        <div page-scroll-1="" class="section-subtitle-block">
+          <SectionSubtitle text="OVERVIEW" />
+        </div>
+        <div class="service-details-block">
+          <div scroll-list="" class="service-details w-richtext" set:html={renderRichText(service.overview)} />
+        </div>
+      </div>
+      <div class="service-cms-wrapper w-dyn-list">
+        {
+          service.gallery.length > 0 ? (
+            <div role="list" class="service-cms-list-main w-dyn-items">
+              {service.gallery.map((src) => (
+                <div page-scroll-2="" role="listitem" class="service-cms-item-main w-dyn-item">
+                  <div class="service-multi-image-block"><img src={src} loading="lazy" alt="service-multi-image" class="service-multi-image" /></div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div class="w-dyn-empty">
+              <div>No items found.</div>
+            </div>
+          )
+        }
+      </div>
+      <div class="service-details-content">
+        <div page-scroll-1="" class="section-subtitle-block">
+          <SectionSubtitle text="DELIVERABLES" />
+        </div>
+        <div class="service-details-block">
+          <div scroll-list="" class="service-details w-richtext" set:html={renderRichText(service.deliverables)} />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

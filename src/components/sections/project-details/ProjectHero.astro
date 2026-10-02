@@ -1,0 +1,49 @@
+---
+import type { Project } from '../../../lib/types';
+import SectionSubtitle from '../../global/SectionSubtitle.astro';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<section class="section_project-hero">
+  <div class="project-bg-color">
+    <div class="w-layout-blockcontainer container-main w-container">
+      <div class="project-hero-wrapper">
+        <div class="project-hero-top-wrapper">
+          <div class="project-hero-header-block">
+            <div page-load-1="" class="section-subtitle-block">
+              <SectionSubtitle text="FEATURED PROJECT" />
+            </div>
+            <h1 heading-style-1="" class="project-hero-header">{project.detailsTitle || project.title}</h1>
+          </div>
+          <div class="section-summary-block max-width-25-rem">
+            <p page-load-3="" class="bodyt-text-large text-color-gray-700">{project.detailsSummary}</p>
+          </div>
+        </div>
+        <div page-load-4="" class="project-hero-image-block"><img src={project.thumbnailImage} loading="eager" fetchpriority="high" alt={project.title} class="project-hero-image" /></div>
+        <div scroll-list="" class="project-meta-wrapper">
+          <div class="project-meta-block">
+            <div class="project-meta-title">Industry</div>
+            <div class="project-meta-title is-large">{project.industry}</div>
+          </div>
+          <div class="project-meta-block">
+            <div class="project-meta-title">Services</div>
+            <div class="project-meta-title is-large">{project.service}</div>
+          </div>
+          <div class="project-meta-block">
+            <div class="project-meta-title">Duration</div>
+            <div class="project-meta-title is-large">{project.duration}</div>
+          </div>
+          <div class="project-meta-block">
+            <div class="project-meta-title">Role</div>
+            <div class="project-meta-title is-large">{project.role}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
