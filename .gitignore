@@ -34,8 +34,10 @@ strapi/public/uploads/*
 !strapi/public/uploads/.gitkeep
 strapi/.env
 
+
+.env*
+
 # vercel
 .vercel
-
-.vercel
-.env*
+.env.local
+.env*.local
