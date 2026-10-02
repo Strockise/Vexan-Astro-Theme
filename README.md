@@ -2,7 +2,7 @@
 
 Vexan is a bold, animation-rich Astro theme for creative agencies, studios and freelancers. It ships with a home page, about, portfolio, blog, contact and style-guide pages, CMS-driven project, service and article pages powered by **Strapi**, and smooth GSAP scroll animations.
 
-**Live demo:** https://vexan-astro.vercel.app <!-- replace with your deployment URL -->
+**Live demo:** https://vexan-astro-theme.vercel.app
 
 ## Tech stack
 
