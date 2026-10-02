@@ -254,9 +254,30 @@ function loops() {
     ['.marque-content-wrapper', (tl) => fromTo(tl, $$('.marque-content-wrap'), { x: '-100%' }, { x: '0%', duration: 40, repeat: -1, ease: EASE.none })],
     ['.recognition-name-block', (tl) => { tl.repeat(-1); to(tl, $$('.recognition-image'), { x: '-100%', duration: 25, ease: EASE.none }); }],
     ['.story-bottom-wrapper', (tl) => { tl.repeat(-1); to(tl, $$('.story-marque-text-block'), { x: '-100%', duration: 80, ease: EASE.none }); }],
-    ['.testimonial-wrapper', (tl) => { tl.repeat(-1); to(tl, $$('.testimonial-card-wrap'), { x: '-100%', duration: 40, ease: EASE.none }); }],
   ];
   for (const [sel, build] of onEnterLoops) for (const el of $$(sel)) onScrollEnter(el, 'top bottom', build);
+
+  // Testimonials: seamless infinite marquee. The track holds identical copies of the card set,
+  // so it slides exactly one copy (plus the gap) and restarts — the jump back is invisible.
+  for (const wrapper of $$('.testimonial-wrapper')) {
+    const track = wrapper.querySelector<HTMLElement>('.testimonial-card-wrap');
+    if (!track) continue;
+    const copies = Array.from(track.children) as HTMLElement[];
+    const distance = () => (copies.length > 1 ? copies[1].offsetLeft - copies[0].offsetLeft : track.scrollWidth);
+    // Same speed as the original design (whole track in 40 s).
+    const speed = () => track.scrollWidth / 40;
+    const tl = gsap.timeline({ paused: true, repeat: -1 });
+    tl.fromTo(track, { x: 0 }, { x: () => -distance(), duration: distance() / speed(), ease: EASE.none });
+    ScrollTrigger.create({ trigger: wrapper, start: clamp('top bottom'), onEnter: () => tl.play() });
+    let resizeTimer: number | undefined;
+    window.addEventListener('resize', () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        const progress = tl.progress();
+        tl.invalidate().progress(progress);
+      }, 150);
+    });
+  }
 
   // Stats counters roll
   for (const el of $$('.stats-number-block')) {
